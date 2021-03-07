@@ -1,5 +1,6 @@
 ﻿using MesOutils;
 using System;
+using System.Linq;
 
 namespace Utilitaires
 {
@@ -16,34 +17,22 @@ namespace Utilitaires
         /// <returns> Renvoie un entier</returns>
         public static int SaisirNb()
         {
-            //int nb;
-            //Console.Write("Veuillez saisir un nombre entier : ");
-            //string resultat = Console.ReadLine();
-            //while (!Int32.TryParse(resultat, out nb)) // Convertit le string resultat en int nb, retourne un true si la conversion est réussie
-            //{
-            //    try
-            //    {
-            //        Console.Write("Veuillez saisir un nombre entier : ");
-            //        resultat = Console.ReadLine();
-            //    }
-            //    catch (Exception)
-            //    {
-            //    }
-            //}
-            //return nb;
-            int nb = 1;
-            bool nb2 = false;
-            do
+            int nb;
+            Console.Write("Veuillez saisir un nombre entier : ");
+            string resultat = Console.ReadLine();
+            while (!Int32.TryParse(resultat, out nb)) // Convertit le string resultat en int nb, retourne un true si la conversion est réussie
             {
                 try
                 {
                     Console.Write("Veuillez saisir un nombre entier : ");
-                    nb = Convert.ToInt32(Console.Read());
-                    nb2 = true;
+                    resultat = Console.ReadLine();
                 }
-                catch (FormatException) { }
-            } while (!nb2);
+                catch (Exception)
+                {
+                }
+            }
             return nb;
+
         }
         /// <summary>
         /// Demande la saisie au clavier d'un nombre entier ayant pour valeur minimale pMin
@@ -60,7 +49,7 @@ namespace Utilitaires
                     Console.Write("Veuillez saisir un nombre entier supérieur à " + pMin + " : ");
                     nb = Convert.ToInt32(Console.ReadLine());
                 }
-                catch (FormatException){ }
+                catch (FormatException) { }
             } while (nb < pMin);
             return nb;
         }
@@ -91,7 +80,7 @@ namespace Utilitaires
         /// <param name="nbAConvertir">Entier de base 10 à convertir</param>
         /// <param name="newBase">Base dans laquelle le nombre sera converti</param>
         /// <returns>Le nombre converti dans la nouvelle base sous forme de String</returns>
-        public static string Conversion (int nbAConvertir, int newBase)
+        public static string Conversion(int nbAConvertir, int newBase)
         {
             if (nbAConvertir <= 0)
             {
@@ -127,6 +116,12 @@ namespace Utilitaires
                 }
             }
             return valeur;
+        }
+        public static string InversePhrase(String phrase)
+        {
+            string[] maListe = phrase.Split(' ');
+            string maListeInversee = string.Join(" ", maListe.Reverse());
+            return maListeInversee;
         }
     }
 }

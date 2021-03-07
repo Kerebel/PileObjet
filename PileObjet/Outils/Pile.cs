@@ -42,14 +42,14 @@ namespace MesOutils
         /// Dépile le dernier nombre empilé dans la List
         /// </summary>
         /// <returns>renvoie l'entier qui a été dépilé</returns>
-        public int Depiler()
+        public T Depiler()
         {
             if (!PileVide())
             {
                 T nb = this.elements[Count - 1];
                 this.elements.RemoveAt(Count - 1); // plus sûr
                 //pUnePile.tabElem.Remove(obj);
-                return Convert.ToInt32(nb);
+                return nb;
             }
             else
             {

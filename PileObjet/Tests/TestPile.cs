@@ -78,18 +78,49 @@ namespace PileObjet.Tests
         /// </summary>
         public static void TesteConversion()
         {
-                Console.WriteLine("Saisie du nombre à convertir.");
-                int nbAConvertir = UtilitaireConsole.SaisirNb(0);
-                Console.WriteLine("Saisie de la nouvelle base");
-                int newBase = UtilitaireConsole.SaisirNb(2, 16);
-                TesteConversion(nbAConvertir, newBase);    
+            Console.WriteLine("Saisie du nombre à convertir.");
+            int nbAConvertir = UtilitaireConsole.SaisirNb(0);
+            Console.WriteLine("Saisie de la nouvelle base");
+            int newBase = UtilitaireConsole.SaisirNb(2, 16);
+            TesteConversion(nbAConvertir, newBase);
         }
-        public static void TesteConversion(int nbAConvertir , int newBase)
+        public static void TesteConversion(int nbAConvertir, int newBase)
         {
             try
             {
                 String valeurConvertie = UtilitaireConsole.Conversion(nbAConvertir, newBase);
                 Console.WriteLine("valeurConvertie convertie : " + valeurConvertie);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        internal static string InversePhrase(String phrase)
+        {
+            Pile<string> maPile = new Pile<string>();
+            var tab = phrase.Split(' ');
+            foreach (string mot in tab)
+            {
+                maPile.Empiler(mot);
+            }
+            String message = "";
+            while (!maPile.PileVide())
+            {
+                message += " " + maPile.Depiler();
+            }
+            return message;
+        }
+        internal static void TesteInversePhrase()
+        {
+            try
+            {
+                String phrase = UtilitaireAPI.RecupereLoremIpsum(3);
+                Console.WriteLine("\n\nphrase: ");
+                Console.WriteLine(phrase);
+                String phraseInversee = InversePhrase(phrase);
+                Console.WriteLine("\nphraseInversee : ");
+                Console.WriteLine(phraseInversee);
             }
             catch (Exception ex)
             {
